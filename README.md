@@ -1,6 +1,8 @@
-# ComfyUI-AnyLLM (LangChain)
+# ComfyUI-AnyLLM
 
-A ComfyUI node pack that exposes dedicated provider nodes implemented with LangChain.
+A ComfyUI custom node pack for calling LLM providers.
+
+This pack currently includes **Google Gemini** nodes powered by the official **`google-genai`** Python SDK.
 
 ## Install
 
@@ -27,22 +29,61 @@ pip install -r ComfyUI/custom_nodes/ComfyUI-AnyLLM/requirements.txt
 
 Restart ComfyUI.
 
-## Node
+## Nodes
 
-- **Google Chat (LangChain)**
+### Get Environment Variable (AnyLLM)
+
+Category:
+- `AnyLLM/Utils`
+
+Inputs:
+- `name` (STRING) - environment variable name, e.g. `GOOGLE_API_KEY`
+
+Outputs:
+- `value` (STRING)
+
+Notes:
+- Raises an error if the variable is missing or empty.
+
+### Google Gemini (AnyLLM)
+
+Category:
+- `AnyLLM/Google`
 
 Inputs:
 - `model` (dropdown)
-- `prompt` (STRING, optional)
-- `api_key` (STRING, optional; defaults to env `GOOGLE_API_KEY`)
+- `api_key` (STRING) - connect from **Get Environment Variable (AnyLLM)**
+- `prompt` (STRING)
+- `images` (IMAGE, optional) - image batch input
+- `response_images` (BOOLEAN) - request image outputs when supported by the model
 
-Output:
+Outputs:
 - `text` (STRING)
+- `images` (IMAGE)
+
+Notes:
+- If the model returns images, they are output as `images`.
+- If the model does not return images, the node passes through the input `images` (or returns a small blank image if none was provided).
 
 ## Notes
 
 - Provider/model capabilities differ; not every model supports images.
 - API keys are passed only at runtime (not stored).
+
+## Errors
+
+This pack **raises Python exceptions** on failures (missing keys, missing deps, API errors) so the error shows up directly on the node in ComfyUI.
+
+## Logging / Debugging
+
+The Google node prints progress logs prefixed with:
+- `[ComfyUI-AnyLLM]`
+
+If you run ComfyUI via Docker, you can follow logs with:
+
+```bash
+docker logs -f comfyui
+```
 
 ## ComfyUI Manager listing
 

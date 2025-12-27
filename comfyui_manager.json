@@ -1,13 +1,13 @@
 {
   "name": "ComfyUI-AnyLLM",
-  "author": "",
-  "description": "ComfyUI node that calls multiple LLM providers via LangChain (supports vision/image input).",
+  "author": "Akshay Shegaonkar",
+  "description": "ComfyUI node that calls multiple LLM providers (supports vision/image input).",
   "version": "0.1.0",
   "license": "MIT",
   "files": [
     "__init__.py",
     "nodes/__init__.py",
-    "nodes/google_chat.py",
+    "nodes/google_gemini.py",
     "providers/__init__.py",
     "install.py",
     "requirements.txt"
