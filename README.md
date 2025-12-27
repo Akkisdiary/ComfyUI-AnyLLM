@@ -74,17 +74,6 @@ Notes:
 
 This pack **raises Python exceptions** on failures (missing keys, missing deps, API errors) so the error shows up directly on the node in ComfyUI.
 
-## Logging / Debugging
-
-The Google node prints progress logs prefixed with:
-- `[ComfyUI-AnyLLM]`
-
-If you run ComfyUI via Docker, you can follow logs with:
-
-```bash
-docker logs -f comfyui
-```
-
 ## ComfyUI Manager listing
 
 To be discoverable in the default ComfyUI Manager registry, submit a PR to the registry list (ComfyUI-Manager maintains a public JSON list of repositories).
